@@ -20,3 +20,14 @@ exports.addUser = async (req, res) => {
     res.status(401).json({ msg: "Add user Failed" });
   }
 };
+
+exports.getAllUsers = async (req, res) => {
+  const users = await User.find();
+
+  try {
+    res.status(201).send(users);
+  } catch (error) {
+    console.error(error);
+    res.status(401).json({ msg: "Fetch users failed" });
+  }
+};
